@@ -15,10 +15,10 @@
 package ipv6
 
 import (
-	"github.com/google/netstack/tcpip"
-	"github.com/google/netstack/tcpip/buffer"
-	"github.com/google/netstack/tcpip/header"
-	"github.com/google/netstack/tcpip/stack"
+	"github.com/procyonai/netstack/tcpip"
+	"github.com/procyonai/netstack/tcpip/buffer"
+	"github.com/procyonai/netstack/tcpip/header"
+	"github.com/procyonai/netstack/tcpip/stack"
 )
 
 // handleControl handles the case when an ICMP packet contains the headers of

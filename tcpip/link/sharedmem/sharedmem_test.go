@@ -27,12 +27,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/google/netstack/tcpip"
-	"github.com/google/netstack/tcpip/buffer"
-	"github.com/google/netstack/tcpip/header"
-	"github.com/google/netstack/tcpip/link/sharedmem/pipe"
-	"github.com/google/netstack/tcpip/link/sharedmem/queue"
-	"github.com/google/netstack/tcpip/stack"
+	"github.com/procyonai/netstack/tcpip"
+	"github.com/procyonai/netstack/tcpip/buffer"
+	"github.com/procyonai/netstack/tcpip/header"
+	"github.com/procyonai/netstack/tcpip/link/sharedmem/pipe"
+	"github.com/procyonai/netstack/tcpip/link/sharedmem/queue"
+	"github.com/procyonai/netstack/tcpip/stack"
 )
 
 const (
