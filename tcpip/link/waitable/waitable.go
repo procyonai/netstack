@@ -22,10 +22,10 @@
 package waitable
 
 import (
-	"github.com/google/netstack/gate"
-	"github.com/google/netstack/tcpip"
-	"github.com/google/netstack/tcpip/buffer"
-	"github.com/google/netstack/tcpip/stack"
+	"github.com/procyonai/netstack/gate"
+	"github.com/procyonai/netstack/tcpip"
+	"github.com/procyonai/netstack/tcpip/buffer"
+	"github.com/procyonai/netstack/tcpip/stack"
 )
 
 // Endpoint is a waitable link-layer endpoint.

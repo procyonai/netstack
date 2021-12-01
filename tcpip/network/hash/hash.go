@@ -18,8 +18,8 @@ package hash
 import (
 	"encoding/binary"
 
-	"github.com/google/netstack/rand"
-	"github.com/google/netstack/tcpip/header"
+	"github.com/procyonai/netstack/rand"
+	"github.com/procyonai/netstack/tcpip/header"
 )
 
 var hashIV = RandN32(1)[0]

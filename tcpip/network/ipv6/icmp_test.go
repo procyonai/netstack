@@ -19,14 +19,14 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/google/netstack/tcpip"
-	"github.com/google/netstack/tcpip/buffer"
-	"github.com/google/netstack/tcpip/header"
-	"github.com/google/netstack/tcpip/link/channel"
-	"github.com/google/netstack/tcpip/link/sniffer"
-	"github.com/google/netstack/tcpip/stack"
-	"github.com/google/netstack/tcpip/transport/icmp"
-	"github.com/google/netstack/waiter"
+	"github.com/procyonai/netstack/tcpip"
+	"github.com/procyonai/netstack/tcpip/buffer"
+	"github.com/procyonai/netstack/tcpip/header"
+	"github.com/procyonai/netstack/tcpip/link/channel"
+	"github.com/procyonai/netstack/tcpip/link/sniffer"
+	"github.com/procyonai/netstack/tcpip/stack"
+	"github.com/procyonai/netstack/tcpip/transport/icmp"
+	"github.com/procyonai/netstack/waiter"
 )
 
 const (

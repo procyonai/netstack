@@ -18,8 +18,8 @@ import (
 	"encoding/binary"
 
 	"github.com/google/btree"
-	"github.com/google/netstack/tcpip"
-	"github.com/google/netstack/tcpip/seqnum"
+	"github.com/procyonai/netstack/tcpip"
+	"github.com/procyonai/netstack/tcpip/seqnum"
 )
 
 // These constants are the offsets of the respective fields in the TCP header.
@@ -54,6 +54,9 @@ const (
 	TCPFlagAck
 	TCPFlagUrg
 )
+
+// TCPFlagMask is the mask of supported tcp flags
+const TCPFlagMask = 0x3f
 
 // Options that may be present in a TCP segment.
 const (

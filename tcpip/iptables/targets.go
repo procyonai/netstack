@@ -16,7 +16,7 @@
 
 package iptables
 
-import "github.com/google/netstack/tcpip/buffer"
+import "github.com/procyonai/netstack/tcpip/buffer"
 
 // UnconditionalAcceptTarget accepts all packets.
 type UnconditionalAcceptTarget struct{}
