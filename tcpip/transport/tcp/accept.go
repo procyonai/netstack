@@ -19,6 +19,8 @@ import (
 	"encoding/binary"
 	"hash"
 	"io"
+	"log"
+	"runtime"
 	"sync"
 	"time"
 
@@ -575,6 +577,16 @@ func (e *endpoint) protocolListenLoop(rcvWnd seqnum.Size) *tcpip.Error {
 	v6only := e.v6only
 	e.mu.Unlock()
 	ctx := newListenContext(e.stack, e, rcvWnd, v6only, e.NetProto)
+
+	// recover from crashes
+	defer func() {
+		if err := recover(); err != nil {
+			const size = 64 << 10
+			buf := make([]byte, size)
+			buf = buf[:runtime.Stack(buf, false)]
+			log.Printf("Recovered: %v: %v\n", err, buf)
+		}
+	}()
 
 	defer func() {
 		// Mark endpoint as closed. This will prevent goroutines running
