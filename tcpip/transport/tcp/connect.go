@@ -16,6 +16,8 @@ package tcp
 
 import (
 	"encoding/binary"
+	"log"
+	"runtime"
 	"sync"
 	"time"
 
@@ -674,6 +676,10 @@ func sendTCPBatch(r *stack.Route, id stack.TransportEndpointID, data buffer.Vect
 	mss := int(gso.MSS)
 	n := (data.Size() + mss - 1) / mss
 
+	if r == nil {
+		return tcpip.ErrInvalidEndpointState
+	}
+
 	hdrs := stack.NewPacketDescriptors(n, header.TCPMinimumSize+int(r.MaxHeaderLength())+optLen)
 
 	size := data.Size()
@@ -711,6 +717,10 @@ func sendTCP(r *stack.Route, id stack.TransportEndpointID, data buffer.Vectorise
 
 	if r.Loop&stack.PacketLoop == 0 && gso != nil && gso.Type == stack.GSOSW && int(gso.MSS) < data.Size() {
 		return sendTCPBatch(r, id, data, ttl, tos, flags, seq, ack, rcvWnd, opts, gso)
+	}
+
+	if r == nil {
+		return tcpip.ErrInvalidEndpointState
 	}
 
 	d := &stack.PacketDescriptor{
@@ -1088,6 +1098,16 @@ func (e *endpoint) disableKeepaliveTimer() {
 func (e *endpoint) protocolMainLoop(handshake bool) *tcpip.Error {
 	var closeTimer *time.Timer
 	var closeWaker sleep.Waker
+
+	// recover from crashes
+	defer func() {
+		if err := recover(); err != nil {
+			const size = 64 << 10
+			buf := make([]byte, size)
+			buf = buf[:runtime.Stack(buf, false)]
+			log.Printf("Recovered: %v: %v\n", err, buf)
+		}
+	}()
 
 	epilogue := func() {
 		// e.mu is expected to be hold upon entering this section.
